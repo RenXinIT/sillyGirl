@@ -8,13 +8,11 @@
 <link rel="stylesheet" href="/admin/umi.d8ae1311.css">
 <script async="" src="/scripts/loading.js"></script>
 <style>
-/* 浅灰背景，与后台统一 */
 body {
     background: #f0f2f5 !important;
     background-attachment: fixed !important;
 }
 
-/* 隐藏无用元素 */
 .ant-pro-form-login-header,
 .ant-pro-form-login-logo,
 .ant-pro-form-login-title,
@@ -39,7 +37,6 @@ body {
     display: none !important;
 }
 
-/* 登录卡片 */
 .ant-pro-form-login-container {
     position: fixed !important;
     top: 50% !important;
@@ -59,7 +56,7 @@ body {
 }
 
 .ant-pro-form-login-container::before {
-    content: "🐱 傻妞";
+    content: "登录后台";
     display: block;
     text-align: center;
     font-size: 26px;
@@ -69,7 +66,6 @@ body {
     letter-spacing: 2px;
 }
 
-/* 输入框 */
 .ant-pro-form-login-main .ant-input-affix-wrapper,
 .ant-pro-form-login-main .ant-input {
     border-radius: 8px !important;
@@ -84,7 +80,6 @@ body {
     box-shadow: 0 0 0 3px rgba(64, 158, 255, 0.1) !important;
 }
 
-/* 按钮 */
 .ant-pro-form-login-main .ant-btn-primary {
     border-radius: 8px !important;
     height: 42px !important;
@@ -109,25 +104,17 @@ body {
 <body>
 <div id="root"></div>
 <script src="/admin/umi.a85b5822.js"></script>
+
 <script>
-/* 404 自动跳转：轮询检测，最多 15 秒 */
+/* 404 自动跳转 */
 (function() {
     var fixed = false;
     var count = 0;
     var timer = setInterval(function() {
-        if (fixed || count > 50) {
-            clearInterval(timer);
-            return;
-        }
+        if (fixed || count > 50) { clearInterval(timer); return; }
         count++;
-
         var text = (document.body && document.body.innerText) ? document.body.innerText : '';
-        // 检测 404 关键词
-        if (text.indexOf('does not exist') === -1 && text.indexOf('404') === -1) {
-            return;
-        }
-
-        // 优先点 "Back Home" 按钮
+        if (text.indexOf('does not exist') === -1 && text.indexOf('404') === -1) return;
         var all = document.querySelectorAll('button, a');
         for (var i = 0; i < all.length; i++) {
             var t = (all[i].innerText || '').trim();
@@ -137,11 +124,40 @@ body {
                 return;
             }
         }
-
-        // 没找到按钮，直接跳转
         fixed = true;
         window.location.href = '/admin/';
     }, 300);
+})();
+
+/* 替换后台标题 */
+(function() {
+    var oldText = '傻妞科技研究生产中心';
+    var newText = '控制后台';  // 改成你想要的名字
+
+    function replaceTitle() {
+        var all = document.querySelectorAll('h1, h2, h3, h4, h5, span, div, a');
+        for (var i = 0; i < all.length; i++) {
+            var el = all[i];
+            if (el.children.length === 0 && el.textContent.trim() === oldText) {
+                el.textContent = newText;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    var count = 0;
+    var timer = setInterval(function() {
+        if (replaceTitle() || count > 100) clearInterval(timer);
+        count++;
+    }, 200);
+
+    if (window.MutationObserver) {
+        var observer = new MutationObserver(function() {
+            replaceTitle();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
 })();
 </script>
 </body>
