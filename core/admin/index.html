@@ -8,7 +8,9 @@
 <link rel="stylesheet" href="/admin/umi.d8ae1311.css">
 <script async="" src="/scripts/loading.js"></script>
 <style>
-/* 隐藏 Ant Design 标题和 logo */
+/* 只隐藏登录页特有的元素，不影响后台 */
+
+/* 隐藏标题和 logo */
 .ant-pro-form-login-header,
 .ant-pro-form-login-logo,
 .ant-pro-form-login-title {
@@ -20,8 +22,8 @@
     display: none !important;
 }
 
-/* 隐藏"手机号登录"标签页 */
-.ant-tabs-nav {
+/* 隐藏登录页的标签页（手机号登录） */
+.ant-pro-form-login-container .ant-tabs-nav {
     display: none !important;
 }
 
@@ -31,19 +33,13 @@
 }
 
 /* 隐藏"忘记密码" */
-.ant-pro-form-login-container .ant-form-item:last-child a,
 .ant-pro-form-login-container a[href*="forgot"],
 .ant-pro-form-login-container a[href*="reset"] {
     display: none !important;
 }
 
-/* 隐藏底部版权 */
+/* 隐藏底部版权（可选，想保留就注释掉） */
 .ant-layout-footer {
-    display: none !important;
-}
-
-/* 隐藏右上角语言切换 */
-.ant-pro-global-header {
     display: none !important;
 }
 </style>
