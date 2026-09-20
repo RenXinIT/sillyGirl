@@ -8,27 +8,56 @@
 <link rel="stylesheet" href="/admin/umi.d8ae1311.css">
 <script async="" src="/scripts/loading.js"></script>
 <style>
-/* 只隐藏登录页特有的元素，不影响后台 */
-
-/* 隐藏标题和 logo */
-.ant-pro-form-login-header,
-.ant-pro-form-login-logo,
-.ant-pro-form-login-title {
-    display: none !important;
+/* ===== 全局撑满 ===== */
+html, body {
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-/* 隐藏副标题 */
+#root,
+#root > div,
+#root > div > div,
+#root > div > div > div {
+    height: 100% !important;
+    min-height: 100vh !important;
+}
+
+/* ===== 外层容器去掉 padding，改为垂直水平居中 ===== */
+#root > div > div > div {
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 登录容器本身也居中 */
+.ant-pro-form-login-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: auto !important;
+    padding: 0 !important;
+}
+
+.ant-pro-form-login-main {
+    margin: 0 auto !important;
+}
+
+/* ===== 隐藏无用元素 ===== */
+.ant-pro-form-login-header,
+.ant-pro-form-login-logo,
+.ant-pro-form-login-title,
 .ant-pro-form-login-desc {
     display: none !important;
 }
 
-/* 隐藏登录页的标签页（手机号登录） */
 .ant-pro-form-login-container .ant-tabs-nav {
     display: none !important;
 }
 
-/* 隐藏"其他登录方式" */
-.ant-pro-form-login-other {
+/* 隐藏"其他登录方式"（精确类名） */
+.ant-pro-form-login-main-other {
     display: none !important;
 }
 
@@ -38,9 +67,21 @@
     display: none !important;
 }
 
-/* 隐藏底部版权（可选，想保留就注释掉） */
+/* 隐藏底部版权 */
 .ant-layout-footer {
     display: none !important;
+}
+
+/* ===== 美化 ===== */
+.ant-pro-form-login-main .ant-input-affix-wrapper,
+.ant-pro-form-login-main .ant-input {
+    border-radius: 8px !important;
+}
+
+.ant-pro-form-login-main .ant-btn-primary {
+    border-radius: 8px !important;
+    height: 42px !important;
+    font-weight: 600 !important;
 }
 </style>
 </head>
