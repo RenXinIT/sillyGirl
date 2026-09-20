@@ -8,40 +8,10 @@
 <link rel="stylesheet" href="/admin/umi.d8ae1311.css">
 <script async="" src="/scripts/loading.js"></script>
 <style>
-/* ===== 全局撑满 ===== */
-html, body {
-    height: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-#root,
-#root > div,
-#root > div > div,
-#root > div > div > div {
-    height: 100% !important;
-    min-height: 100vh !important;
-}
-
-/* ===== 外层容器去掉 padding，改为垂直水平居中 ===== */
-#root > div > div > div {
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-/* 登录容器本身也居中 */
-.ant-pro-form-login-container {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-height: auto !important;
-    padding: 0 !important;
-}
-
-.ant-pro-form-login-main {
-    margin: 0 auto !important;
+/* ===== 全局背景（只影响登录页，因为登录页独占 body） ===== */
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background-attachment: fixed !important;
 }
 
 /* ===== 隐藏无用元素 ===== */
@@ -56,32 +26,86 @@ html, body {
     display: none !important;
 }
 
-/* 隐藏"其他登录方式"（精确类名） */
 .ant-pro-form-login-main-other {
     display: none !important;
 }
 
-/* 隐藏"忘记密码" */
 .ant-pro-form-login-container a[href*="forgot"],
 .ant-pro-form-login-container a[href*="reset"] {
     display: none !important;
 }
 
-/* 隐藏底部版权 */
 .ant-layout-footer {
     display: none !important;
 }
 
-/* ===== 美化 ===== */
-.ant-pro-form-login-main .ant-input-affix-wrapper,
-.ant-pro-form-login-main .ant-input {
-    border-radius: 8px !important;
+/* ===== 登录容器居中 + 毛玻璃卡片 ===== */
+.ant-pro-form-login-container {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90% !important;
+    max-width: 400px !important;
+    padding: 48px 40px !important;
+    margin: 0 !important;
+    min-height: auto !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25) !important;
+    backdrop-filter: blur(20px) !important;
 }
 
+/* 加个"傻妞"标题 */
+.ant-pro-form-login-container::before {
+    content: "🐱 傻妞";
+    display: block;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+}
+
+/* ===== 输入框美化 ===== */
+.ant-pro-form-login-main .ant-input-affix-wrapper,
+.ant-pro-form-login-main .ant-input {
+    border-radius: 10px !important;
+    height: 44px !important;
+    border: 1px solid #e0e0e0 !important;
+    background: #f8f9fa !important;
+    transition: all 0.3s !important;
+}
+
+.ant-pro-form-login-main .ant-input-affix-wrapper:focus-within,
+.ant-pro-form-login-main .ant-input:focus {
+    border-color: #667eea !important;
+    background: #fff !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15) !important;
+}
+
+/* ===== 按钮渐变 ===== */
 .ant-pro-form-login-main .ant-btn-primary {
-    border-radius: 8px !important;
-    height: 42px !important;
+    border-radius: 10px !important;
+    height: 44px !important;
     font-weight: 600 !important;
+    font-size: 16px !important;
+    background: linear-gradient(90deg, #667eea, #764ba2) !important;
+    border: none !important;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4) !important;
+    transition: all 0.3s !important;
+}
+
+.ant-pro-form-login-main .ant-btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 28px rgba(102, 126, 234, 0.5) !important;
+}
+
+/* ===== 自动登录复选框 ===== */
+.ant-pro-form-login-main .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #667eea !important;
+    border-color: #667eea !important;
 }
 </style>
 </head>
